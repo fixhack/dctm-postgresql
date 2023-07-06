@@ -179,12 +179,12 @@ RUN mkdir -p /var/run/postgresql && chown -R postgres:postgres /var/run/postgres
 
 ENV PGDATA /var/lib/postgresql/data
 # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
-RUN mkdir -p "$PGDATA" && mkdir -p /var/lib/postgresql/data/db_ECOS_dat.dat && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA" 
+RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA" 
 VOLUME /var/lib/postgresql/data
 
-COPY docker-entrypoint.sh /var/lib/postgresql
-RUN chmod 755 /var/lib/postgresql/docker-entrypoint.sh && chown postgres:postgres /var/lib/postgresql/docker-entrypoint.sh
-ENTRYPOINT ["/var/lib/postgresql/docker-entrypoint.sh"]
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod 755 /usr/local/bin/docker-entrypoint.sh && chown postgres:postgres /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 # We set the default STOPSIGNAL to SIGINT, which corresponds to what PostgreSQL
 # calls "Fast Shutdown mode" wherein new connections are disallowed and any

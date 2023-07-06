@@ -332,6 +332,8 @@ _main() {
 		fi
 	fi
 
+	mkdir -p /var/lib/postgresql/data/db_ECOS_dat.dat
+
 	exec "$@"
 }
 
