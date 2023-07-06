@@ -182,7 +182,8 @@ ENV PGDATA /var/lib/postgresql/data
 RUN mkdir -p "$PGDATA" && mkdir -p /var/lib/postgresql/data/db_ECOS_dat.dat && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA" 
 VOLUME /var/lib/postgresql/data
 
-COPY --chown=postgres:postgres --chmod=755 docker-entrypoint.sh /var/lib/postgresql
+COPY docker-entrypoint.sh /var/lib/postgresql
+RUN chmod 755 /var/run/postgresql/docker-entrypoint.sh && chown postgres:postgres /var/run/postgresql/docker-entrypoint.sh
 ENTRYPOINT ["/var/lib/postgresql/docker-entrypoint.sh"]
 
 # We set the default STOPSIGNAL to SIGINT, which corresponds to what PostgreSQL
