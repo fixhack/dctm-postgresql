@@ -333,7 +333,14 @@ _main() {
 	fi
 
 	mkdir -p /var/lib/postgresql/data/db_ECOS_dat.dat
-
+	mkdir -p /var/lib/postgresql/data/db_POPECM_dat.dat
+	mkdir -p /var/lib/postgresql/data/db_ERIA_dat.dat
+	mkdir -p /var/lib/postgresql/data/db_PSDR_dat.dat
+	mkdir -p /var/lib/postgresql/data/db_FSIA_dat.dat
+	mkdir -p /var/lib/postgresql/data/db_CMIA_dat.dat
+	mkdir -p /var/lib/postgresql/data/db_PDIA_dat.dat
+	mkdir -p /var/lib/postgresql/data/db_MTGR_dat.dat
+	
 	exec "$@"
 }
 
